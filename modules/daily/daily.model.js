@@ -14,4 +14,5 @@ const dailySchema = new mongoose.Schema({
   week: { type: mongoose.Schema.Types.ObjectId, ref: "Week" },
 });
 
+dailySchema.set('timestamps', true)
 module.exports = mongoose.model("Daily", dailySchema);
