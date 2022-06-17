@@ -13,7 +13,6 @@ async function getDailys(req, res) {
     const user = await User.findById(userId);
     const dailys = await Daily.find({ "user": {$eq: user._id}})
     .populate("user")
-    .populate("week")
     .lean();
     res.status(200).json(dailys).end();
   } catch (err) {
@@ -28,8 +27,7 @@ async function getDailyById(req, res) {
       res.status(400).json("Id not valid").end();
     }
     const daily = await Daily.findById(dailyId)
-      //.populate("week")
-      //.populate("year")
+      .populate("user")
       .lean();
     res.status(200).json(daily).end();
   } catch (err) {
